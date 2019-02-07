@@ -42,7 +42,9 @@ class NewsListTile extends StatelessWidget {
                       ],
                     ),
         ),
-        Divider(),
+          Divider(
+            height: 6.0,
+          ),
       ],
     );
   }
