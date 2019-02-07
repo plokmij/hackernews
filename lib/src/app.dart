@@ -8,7 +8,11 @@ class App extends StatelessWidget {
         child: MaterialApp(
         title: 'News!',
         onGenerateRoute: (RouteSettings settings) {
-            
+          return MaterialPageRoute(
+            builder: (context) {
+              return NewsList();
+            }
+          );
         },
       ),
     );
