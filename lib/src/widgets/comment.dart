@@ -5,8 +5,8 @@ import '../models/item_model.dart';
 class Comment extends StatelessWidget {
   final int itemId;
   final Map<int, Future<ItemModel>> itemMap;
-
-  Comment({this.itemId, this.itemMap});
+  final int depth;
+  Comment({this.itemId, this.itemMap,this.depth});
 
   Widget build(BuildContext context){
     return FutureBuilder(
@@ -15,15 +15,24 @@ class Comment extends StatelessWidget {
         if(!snapshot.hasData) {
           return Text('Still loading comment');
         }
-
+        final item = snapshot.data;
         final children = <Widget>[
-          Text(snapshot.data.text),
+          ListTile(
+            title: Text(item.text),
+            subtitle: item.by == "" ? Text("Deleted!") : Text(item.by),
+            contentPadding: EdgeInsets.only(
+              right: 16.0,
+              left: (depth + 1) * 16.0,
+            ),
+          ),
+          Divider(),
         ];
 
-        snapshot.data.kids.forEach((kidId) {
+        item.kids.forEach((kidId) {
          children.add( Comment (
             itemId: kidId,
-            itemMap: itemMap
+            itemMap: itemMap,
+            depth: depth + 1,
           ),);
         });
 
