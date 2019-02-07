@@ -21,5 +21,4 @@ class LoadingContainer extends StatelessWidget {
       margin: EdgeInsets.only(top: 5.0, bottom: 5.0)
     );
   }
-
-}
+} 
