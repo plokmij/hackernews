@@ -12,6 +12,7 @@ class Refresh extends StatelessWidget {
       child: child,
       onRefresh: () async {
          await bloc.clearCache();
+         await bloc.fetchTopIds();
       },
     );
   }
